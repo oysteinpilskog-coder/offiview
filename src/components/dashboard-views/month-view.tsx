@@ -33,7 +33,7 @@ function toIso(d: Date) {
 }
 
 const STATUS_ORDER: EntryStatus[] = [
-  'office', 'remote', 'customer', 'event', 'travel', 'vacation', 'absent', 'off',
+  'office', 'remote', 'customer', 'prospect', 'event', 'travel', 'vacation', 'absent', 'off',
 ]
 
 type GroupKey = 'office' | 'remote' | 'customer' | 'away'
@@ -45,7 +45,7 @@ const DAY_STATUS_GROUPS: Array<{
 }> = [
   { key: 'office',   statuses: ['office'],                          representative: 'office'   },
   { key: 'remote',   statuses: ['remote'],                          representative: 'remote'   },
-  { key: 'customer', statuses: ['customer', 'event', 'travel'],     representative: 'customer' },
+  { key: 'customer', statuses: ['customer', 'prospect', 'event', 'travel'],     representative: 'customer' },
   { key: 'away',     statuses: ['vacation', 'absent', 'off'],       representative: 'vacation' },
 ]
 
@@ -68,6 +68,7 @@ export function MonthView({ members, weekDays, entries, orgName: _orgName, time 
     office: t.status.office,
     remote: t.pulse.atHomeShort,
     customer: t.status.customer,
+    prospect: t.status.prospect,
     event: t.status.event,
     travel: t.status.travel,
     vacation: t.status.vacation,

@@ -91,6 +91,7 @@ export const no = {
     office: 'Kontor',
     remote: 'Hjemmekontor',
     customer: 'Hos kunde',
+    prospect: 'Potensiell kunde',
     event: 'Messe/kurs',
     travel: 'Reise',
     vacation: 'Ferie',

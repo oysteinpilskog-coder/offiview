@@ -93,6 +93,7 @@ export const en: Dictionary = {
     office: 'Office',
     remote: 'Remote',
     customer: 'At customer',
+    prospect: 'Prospect',
     event: 'Event/course',
     travel: 'Travel',
     vacation: 'Vacation',

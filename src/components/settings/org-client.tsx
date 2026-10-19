@@ -26,7 +26,7 @@ function asThemeId(v: string | null | undefined): ThemeId {
   return v && THEME_IDS.includes(v) ? (v as ThemeId) : 'nordic'
 }
 
-const STATUS_ORDER: EntryStatus[] = ['office', 'remote', 'customer', 'event', 'travel', 'vacation', 'absent', 'off']
+const STATUS_ORDER: EntryStatus[] = ['office', 'remote', 'customer', 'prospect', 'event', 'travel', 'vacation', 'absent', 'off']
 
 interface OrgClientProps {
   org: Organization

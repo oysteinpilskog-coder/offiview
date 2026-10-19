@@ -93,6 +93,7 @@ export const lt: Dictionary = {
     office: 'Biuras',
     remote: 'Nuotoliniu būdu',
     customer: 'Pas klientą',
+    prospect: 'Potencialus klientas',
     event: 'Paroda/kursai',
     travel: 'Kelionė',
     vacation: 'Atostogos',

@@ -31,7 +31,7 @@ interface TodayViewProps {
 const WEEK_STATUS_GROUPS: Array<{ key: string; statuses: EntryStatus[]; representative: EntryStatus }> = [
   { key: 'office',   statuses: ['office'],                  representative: 'office' },
   { key: 'remote',   statuses: ['remote'],                  representative: 'remote' },
-  { key: 'customer', statuses: ['customer', 'event', 'travel'],      representative: 'customer' },
+  { key: 'customer', statuses: ['customer', 'prospect', 'event', 'travel'],      representative: 'customer' },
   { key: 'away',     statuses: ['vacation', 'absent', 'off'], representative: 'vacation' },
 ]
 
