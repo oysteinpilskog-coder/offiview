@@ -30,7 +30,7 @@ export function HeroBigNumber({ members, todayEntries, offices }: HeroBigNumberP
   const office = todayEntries.filter(e => e.status === 'office').length
   const remote = todayEntries.filter(e => e.status === 'remote').length
   const customer = todayEntries.filter(e =>
-    ['customer', 'event', 'travel'].includes(e.status)
+    ['customer', 'prospect', 'event', 'travel'].includes(e.status)
   ).length
   const away = todayEntries.filter(e =>
     ['vacation', 'absent', 'off'].includes(e.status)

@@ -69,6 +69,7 @@ export function derivePalettes(colors: HexColors): Record<EntryStatus, StatusPal
     office:   derivePalette(colors.office),
     remote:   derivePalette(colors.remote),
     customer: derivePalette(colors.customer),
+    prospect: derivePalette(colors.prospect),
     event:    derivePalette(colors.event),
     travel:   derivePalette(colors.travel),
     vacation: derivePalette(colors.vacation),

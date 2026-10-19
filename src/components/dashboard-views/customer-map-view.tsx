@@ -140,7 +140,7 @@ function CustomerMapViewImpl({
   const usByKey = new Map<string, CustomerCluster>()
 
   for (const e of entries) {
-    if (e.status !== 'customer' && e.status !== 'event' && e.status !== 'travel') continue
+    if (e.status !== 'customer' && e.status !== 'prospect' && e.status !== 'event' && e.status !== 'travel') continue
     if (!memberById.has(e.member_id)) continue
 
     const label = (e.location_label ?? '').trim()

@@ -814,11 +814,11 @@ function EmailPreview({
   const visibleMembers = members.filter((m) => m.is_active).slice(0, 8)
 
   // Statuser som rent faktisk dukker opp denne uka — vi viser bare disse i
-  // forklaringen, ikke alle 8. Det reduserer støy og gir mer luft.
+  // forklaringen, ikke alle 9. Det reduserer støy og gir mer luft.
   const usedStatuses = new Set<EntryStatus>()
   for (const e of entries) usedStatuses.add(e.status)
   const legendStatuses: EntryStatus[] = (
-    ['office', 'remote', 'customer', 'event', 'travel', 'vacation', 'absent', 'off'] as const
+    ['office', 'remote', 'customer', 'prospect', 'event', 'travel', 'vacation', 'absent', 'off'] as const
   ).filter((s) => usedStatuses.has(s))
 
   // Premium paper-tone — varmt, ikke kalt hvitt. Speiler design-systemets

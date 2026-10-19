@@ -93,6 +93,7 @@ export const sv: Dictionary = {
     office: 'Kontor',
     remote: 'Hemmakontor',
     customer: 'Hos kund',
+    prospect: 'Potentiell kund',
     event: 'Mässa/kurs',
     travel: 'Resa',
     vacation: 'Semester',

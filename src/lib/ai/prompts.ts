@@ -142,6 +142,7 @@ ${correctionsBlock}
 - \`office\` — på kontoret
 - \`remote\` — hjemmekontor
 - \`customer\` — hos kunde / kundebesøk
+- \`prospect\` — potensiell kunde: salgsmøte, demo eller tilbudsmøte hos et firma som IKKE er i kundelisten ennå
 - \`event\` — messe, konferanse, kurs, workshop, kickoff, seminar, kongress
 - \`travel\` — reise (uten spesifisert destinasjon), flyttedag, transit
 - \`vacation\` — ferie
@@ -158,6 +159,7 @@ Dette er hjertet av parsing. Gå rekkefølgen steg for steg og velg den første 
    - "hjemme", "hjemmekontor", "remote", "home office" → \`remote\`
    - "kontoret", "på kontoret", "office" → \`office\`
    - "fri", "off", "avspaserer", "avspasering" → \`off\`
+   - "potensiell kunde", "prospekt", "prospect" → \`prospect\`, location = firmanavnet slik det står i meldingen
 
 2. **Aktivitets-nøkkelord** (sterk signal for event):
    - "messe", "fair", "expo" → \`event\`
@@ -169,21 +171,27 @@ Dette er hjertet av parsing. Gå rekkefølgen steg for steg og velg den første 
 
 3. **Kjent kunde** (navn eller alias fra kundelisten over) → \`customer\`, location = kundens EKSAKTE \`name\`.
 
-4. **Firmakontor-by som matcher subjektets home_office_city**:
+4. **Salgsmøte hos firma som ikke er kunde**:
+   - "salgsmøte", "salgsbesøk", "demo", "presentasjon", "tilbudsmøte", "pitch", "lead" + et firmanavn som IKKE står i kundelisten → \`prospect\`, location = firmanavnet slik det står i meldingen.
+   - Står firmaet i kundelisten, har steg 3 allerede truffet — de er kunde, ikke potensiell kunde.
+
+5. **Firmakontor-by som matcher subjektets home_office_city**:
    - Hvis bynavnet i meldingen matcher subjektets \`home_office_city\` (eller et registrert kontor med den byen) → \`office\`, ingen location.
    - Eksempel: Oslo-basert avsender skriver "Oslo fredag" → office.
 
-5. **Bare et bynavn, uten annen kontekst** → \`customer\` med location = bynavnet. Lavere confidence (0.6–0.75) når det ikke matcher kundelisten eller subjektets home office.
+6. **Bare et bynavn, uten annen kontekst** → \`customer\` med location = bynavnet. Lavere confidence (0.6–0.75) når det ikke matcher kundelisten eller subjektets home office.
 
-6. **Ukjent** → clarification.
+7. **Ukjent** → clarification.
 
 ### Eksempel — kaskade i praksis
 
 Gitt kundeliste med { "name": "Diplomat" }, og avsender med home_office_city="Vilnius":
 - "Diplomat torsdag" → (3) customer, location="Diplomat", confidence=0.95
 - "messe Oslo neste uke" → (2) event, location="Oslo", confidence=0.85
-- "Vilnius fredag" → (4) office, confidence=0.9 (fordi Vilnius matcher avsenders home_office_city)
-- "Oslo fredag" fra samme avsender → (5) customer, location="Oslo", confidence=0.65 (Oslo er ikke home office)
+- "Salgsmøte Optikk Nord torsdag" → (4) prospect, location="Optikk Nord", confidence=0.85 (Optikk Nord står ikke i kundelisten)
+- "Demo hos Diplomat fredag" → (3) customer, location="Diplomat", confidence=0.9 (Diplomat er allerede kunde)
+- "Vilnius fredag" → (5) office, confidence=0.9 (fordi Vilnius matcher avsenders home_office_city)
+- "Oslo fredag" fra samme avsender → (6) customer, location="Oslo", confidence=0.65 (Oslo er ikke home office)
 - "Hjemme i morgen" → (1) remote, confidence=0.95
 - "Kickoff 14.-15. mai" → (2) event, location=null, confidence=0.9
 

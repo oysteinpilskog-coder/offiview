@@ -79,7 +79,7 @@ export function CalwinBrandDashboard({
       const status = map.get(m.id)?.status
       if (status === 'office') office++
       else if (status === 'remote') remote++
-      else if (status === 'customer' || status === 'event' || status === 'travel') customer++
+      else if (status === 'customer' || status === 'prospect' || status === 'event' || status === 'travel') customer++
       else if (status === 'vacation' || status === 'absent' || status === 'off') away++
     }
     return { office, remote, customer, away, total: initialMembers.length }

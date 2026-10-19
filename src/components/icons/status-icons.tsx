@@ -8,7 +8,7 @@ type IconProps = {
 }
 
 // Status → icon mapping
-export type EntryStatus = 'office' | 'remote' | 'customer' | 'event' | 'travel' | 'vacation' | 'absent' | 'off'
+export type EntryStatus = 'office' | 'remote' | 'customer' | 'prospect' | 'event' | 'travel' | 'vacation' | 'absent' | 'off'
 
 // All icons are SF Symbol-style solid filled glyphs.
 // `color` sets the primary fill. Small cutouts use evenodd fill-rule to
@@ -52,6 +52,21 @@ export function CustomerIcon({ size = 24, color = DEFAULT_HEX_COLORS.customer, c
         d="M2 19.5a6 6 0 0 1 11-3.37A6 6 0 0 1 22 19.5V21a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1v-1.5Z"
         fill={color}
       />
+    </svg>
+  )
+}
+
+// Potensiell kunde — Single figure with a plus (new relationship)
+export function ProspectIcon({ size = 24, color = DEFAULT_HEX_COLORS.prospect, className }: IconProps) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" className={className}>
+      <circle cx="8" cy="7" r="3.5" fill={color} />
+      <path
+        d="M2 19.5a6 6 0 0 1 12 0V21a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1v-1.5Z"
+        fill={color}
+      />
+      <rect x="17" y="7" width="2" height="8" rx="1" fill={color} />
+      <rect x="14" y="10" width="8" height="2" rx="1" fill={color} />
     </svg>
   )
 }
@@ -144,6 +159,7 @@ export const STATUS_COLORS: Record<EntryStatus, { bg: string; text: string; icon
   office:   { icon: DEFAULT_PALETTES.office.icon,   bg: DEFAULT_PALETTES.office.bg,   text: DEFAULT_PALETTES.office.text,   bgDark: DEFAULT_PALETTES.office.bgDark,   textDark: DEFAULT_PALETTES.office.textDark },
   remote:   { icon: DEFAULT_PALETTES.remote.icon,   bg: DEFAULT_PALETTES.remote.bg,   text: DEFAULT_PALETTES.remote.text,   bgDark: DEFAULT_PALETTES.remote.bgDark,   textDark: DEFAULT_PALETTES.remote.textDark },
   customer: { icon: DEFAULT_PALETTES.customer.icon, bg: DEFAULT_PALETTES.customer.bg, text: DEFAULT_PALETTES.customer.text, bgDark: DEFAULT_PALETTES.customer.bgDark, textDark: DEFAULT_PALETTES.customer.textDark },
+  prospect: { icon: DEFAULT_PALETTES.prospect.icon, bg: DEFAULT_PALETTES.prospect.bg, text: DEFAULT_PALETTES.prospect.text, bgDark: DEFAULT_PALETTES.prospect.bgDark, textDark: DEFAULT_PALETTES.prospect.textDark },
   event:    { icon: DEFAULT_PALETTES.event.icon,    bg: DEFAULT_PALETTES.event.bg,    text: DEFAULT_PALETTES.event.text,    bgDark: DEFAULT_PALETTES.event.bgDark,    textDark: DEFAULT_PALETTES.event.textDark },
   travel:   { icon: DEFAULT_PALETTES.travel.icon,   bg: DEFAULT_PALETTES.travel.bg,   text: DEFAULT_PALETTES.travel.text,   bgDark: DEFAULT_PALETTES.travel.bgDark,   textDark: DEFAULT_PALETTES.travel.textDark },
   vacation: { icon: DEFAULT_PALETTES.vacation.icon, bg: DEFAULT_PALETTES.vacation.bg, text: DEFAULT_PALETTES.vacation.text, bgDark: DEFAULT_PALETTES.vacation.bgDark, textDark: DEFAULT_PALETTES.vacation.textDark },
@@ -157,6 +173,7 @@ export function StatusIcon({ status, size = 24, className, color: colorProp }: {
     case 'office':   return <OfficeIcon size={size} color={color} className={className} />
     case 'remote':   return <RemoteIcon size={size} color={color} className={className} />
     case 'customer': return <CustomerIcon size={size} color={color} className={className} />
+    case 'prospect': return <ProspectIcon size={size} color={color} className={className} />
     case 'event':    return <EventIcon size={size} color={color} className={className} />
     case 'travel':   return <TravelIcon size={size} color={color} className={className} />
     case 'vacation': return <VacationIcon size={size} color={color} className={className} />

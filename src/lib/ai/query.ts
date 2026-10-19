@@ -29,7 +29,7 @@ export interface QueryResult {
 }
 
 const VALID_STATUSES: EntryStatus[] = [
-  'office', 'remote', 'customer', 'event', 'travel', 'vacation', 'absent', 'off',
+  'office', 'remote', 'customer', 'prospect', 'event', 'travel', 'vacation', 'absent', 'off',
 ]
 
 /**
@@ -66,6 +66,7 @@ Valid statuses:
   office    = at the office
   remote    = working from home ("hjemmekontor", "hjemme")
   customer  = at a customer site ("hos kunde")
+  prospect  = visiting a potential customer — sales meeting or demo ("potensiell kunde", "prospekt", "salgsmøte")
   travel    = travelling ("reise", "på reise")
   vacation  = on holiday ("ferie")
   absent    = away / not present ("borte", "fraværende"). Also matches "syk", "sjuk", "sykmeldt" — we don't track sickness as a separate category.

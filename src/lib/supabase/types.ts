@@ -2,7 +2,7 @@
 // Run `npx supabase gen types typescript --project-id $PROJECT_ID > src/lib/supabase/types.ts`
 // to regenerate from the live schema.
 
-export type EntryStatus = 'office' | 'remote' | 'customer' | 'event' | 'travel' | 'vacation' | 'absent' | 'off'
+export type EntryStatus = 'office' | 'remote' | 'customer' | 'prospect' | 'event' | 'travel' | 'vacation' | 'absent' | 'off'
 export type MemberRole = 'admin' | 'member'
 /**
  * Role as it appears in the workspace switcher. `'viewer'` is a *synthetic*
